@@ -114,9 +114,7 @@ for linha in db.index:
 
     print(f'Usuário {camp_name} preenchido!')
     
-print(f'Operação FINALIZADA com sucesso!')
+print(f'Operação FINALIZADA...')
 driver.quit()
 
-
 # COMPLETO
-
