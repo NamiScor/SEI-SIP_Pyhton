@@ -11,12 +11,12 @@ from IPython.display import display
 driver = webdriver.Edge()
 wait = WebDriverWait(driver, 8)
 driver.maximize_window()  
-driver.get('https://sip-treinamento.treslagoas.ms.gov.br/sip/login.php?sigla_orgao_sistema=PMTL&sigla_sistema=SIP')
+driver.get('https://sip')
 time.sleep(2)
 
 # processo de login
-driver.find_element(By.ID, "txtUsuario").send_keys("yasmim.silva")
-driver.find_element(By.ID, "pwdSenha").send_keys("PMTL@2020")
+driver.find_element(By.ID, "txtUsuario").send_keys("  ")
+driver.find_element(By.ID, "pwdSenha").send_keys("  ")
 driver.find_element(By.ID, "selOrgao").click()
 time.sleep(1)
 py.press('down')
@@ -26,7 +26,7 @@ time.sleep(2)
 wait.until(EC.element_to_be_clickable((By.ID, "linkMenu51"))).click()
 wait.until(EC.element_to_be_clickable((By.ID, "linkMenu53"))).click()
 
-dbu = pd.read_excel("Servidores Outubro.xlsx", dtype={"Matrícula": str})
+dbu = pd.read_excel("  .xlsx", dtype={"Matrícula": str})
 
 # Pesquisa pela sigla
 for linha in dbu.index:
@@ -36,7 +36,7 @@ for linha in dbu.index:
 
      # condição da célula estar vazia na planilha
     if pd.isna(nome) or str(nome).strip() == "":
-        print('automação encerrada')
+        print('automação ENCERRADA')
         break
     
     nome_sip = wait.until(EC.element_to_be_clickable((By.ID, "txtNomeRegistroCivilUsuario")))
@@ -55,7 +55,7 @@ for linha in dbu.index:
 
     except TimeoutException:
         # criação de um novo usuário no SIP
-        print(f'Usuário {nome} NÃO EXISTE, prosseguindo com o cadastro...')    
+        print(f'Usuário {nome} NÃO EXISTE --> prosseguindo CADASTRANDO...')    
         driver.find_element(By.ID, "btnNovo").click()
         time.sleep(1)
 
@@ -81,5 +81,6 @@ for linha in dbu.index:
         print(f'Usuário {nome} CRIADO, possui a silga: {sigla}')
         time.sleep(1)
 
-print('Operação finalizada...')
+print('Operação FINALIZADA...')
+
 driver.quit()
